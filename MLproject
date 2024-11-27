@@ -1,0 +1,19 @@
+
+name: minimalist_r
+
+docker_env:
+  image: ivargr/r_inla:latest
+
+entry_points:
+  train:
+    parameters:
+      train_data: path
+      model: str
+    command: "Rscript train.R {train_data} {model}"
+  predict:
+    parameters:
+      historic_data: path
+      future_data: path
+      model: str
+      out_file: path
+    command: "Rscript predict.R {model} {historic_data} {future_data} {out_file}"
