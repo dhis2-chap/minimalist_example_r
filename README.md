@@ -4,7 +4,7 @@ This document demonstrates a minimalist example of how to write a CHAP-compatibl
 ## Running the model without CHAP integration
 Before getting a new model to work as part of CHAP, it can be useful to develop and debug it while running it directly a small dataset from file. 
 
-The example can be run in isolation (e.g. from the command line) using the file isolated_run.py:
+The example can be run in isolation (e.g. from the command line) using the file isolated_run.r:
 ```
 RScript isolated_run.r  
 ```
@@ -34,7 +34,7 @@ time_period,rainfall,mean_temperature,disease_cases,location
 The file "train.r" contains the code to train a model. It reads in training data from a csv file to a data frame. It learns a linear regression from rainfall and mean_temperature (X) to disease_cases (Y). The trained model is stored to file using saveRDS:
 ```
 train_chap <- function(csv_fn, model_fn) {
-  df <- read_csv(csv_fn)
+  df <- read.csv(csv_fn)
   df$disease_cases[is.na(df$disease_cases)] <- 0
   model <- lm(disease_cases ~ rainfall + mean_temperature, data = df)
   saveRDS(model, file=model_fn)
