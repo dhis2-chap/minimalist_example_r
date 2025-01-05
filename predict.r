@@ -1,5 +1,4 @@
-# Define the predict function
-##
+
 predict_chap <- function(model_fn, historic_data_fn, future_climatedata_fn, predictions_fn) {
   df <- read.csv(future_climatedata_fn)
   X <- df[, c("rainfall", "mean_temperature"), drop = FALSE]
