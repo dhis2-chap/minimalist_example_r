@@ -90,7 +90,7 @@ entry_points:
       out_file: path
     command: "Rscript predict.r {model} {historic_data} {future_data} {out_file}"
 ```
-
+The commands then calls the Rscripts train.r and predict.r and the code under the definition of the train and predict functions ensures they are called and with the correct arguments. If these parts are missing the code will fail when run through CHAP, but could still work locally through isolated run.
 CHAP relies on Docker to run models defined in non-python programming languages (i.e. R), you thus need Docker installed to run your model successfully through CHAP. Please see the chap-core documentation for help in succeeding with this.  
 After you have installed chap-core (see here for installation instructions: https://github.com/dhis2-chap/chap-core), it should be possible to run the minimalist model through CHAP as follows (remember to replace '/path/to/your/model/directory' with your local path):
 ```
