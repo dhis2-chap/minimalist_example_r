@@ -81,14 +81,14 @@ entry_points:
     parameters:
       train_data: path
       model: str
-    command: "Rscript train.R {train_data} {model}"
+    command: "Rscript train.r {train_data} {model}"
   predict:
     parameters:
       historic_data: path
       future_data: path
       model: str
       out_file: path
-    command: "Rscript predict.R {model} {historic_data} {future_data} {out_file}"
+    command: "Rscript predict.r {model} {historic_data} {future_data} {out_file}"
 ```
 
 CHAP relies on Docker to run models defined in non-python programming languages (i.e. R), you thus need Docker installed to run your model successfully through CHAP. Please see the chap-core documentation for help in succeeding with this.  
