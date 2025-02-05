@@ -1,3 +1,4 @@
+options(warn=1)
 
 train_chap <- function(csv_fn, model_fn) {
   df <- read.csv(csv_fn)
