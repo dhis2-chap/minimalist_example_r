@@ -1,3 +1,4 @@
+options(warn=1)
 
 predict_chap <- function(model_fn, historic_data_fn, future_climatedata_fn, predictions_fn) {
   df <- read.csv(future_climatedata_fn)
