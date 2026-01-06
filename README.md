@@ -2,11 +2,24 @@
 This document demonstrates a minimalist example of how to write a CHAP-compatible forecasting model. The example is written in R, uses few variables without any lag and a standard machine learning model. It simply learns a linear regression from rain and temperature to disease cases in the same month, without considering any previous disease or climate data. It also assumes and works only with a single region. The model is not meant to accurately capture any interesting relations - the purpose is just to show how CHAP integration works in a simplest possible setting. Note that we include `options(warn=1)` at the top in both train.R and predict.R to see warnings and catch errors when running it through CHAP. This helps a lot with avoiding package depencies for more complex models.
 
 ## Running the model without CHAP integration
-Before getting a new model to work as part of CHAP, it can be useful to develop and debug it while running it directly a small dataset from file. 
+Before getting a new model to work as part of CHAP, it can be useful to develop and debug it while running it directly a small dataset from file.
 
-The example can be run in isolation (e.g. from the command line) using the file isolated_run.r:
+### Using Docker (recommended)
+The easiest way to run the model is using Docker via the provided Makefile:
 ```
-RScript isolated_run.r  
+make run      # Run complete pipeline (train + predict)
+make train    # Train the model only
+make predict  # Make predictions (requires trained model)
+make clean    # Remove output files
+make help     # Show all available commands
+```
+
+This uses the `ghcr.io/mortenoh/r-docker-images/my-r-base:latest` Docker image.
+
+### Running directly with R
+If you have R installed locally, the example can be run using the file isolated_run.r:
+```
+Rscript isolated_run.r
 ```
 
 This file only contains two code lines:  
