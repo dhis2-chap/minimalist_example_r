@@ -2,20 +2,20 @@
 This document demonstrates a minimalist example of how to write a Chap-compatible forecasting model. The example is written in R, uses few variables without any lag and a standard machine learning model. It simply learns a linear regression from rain and temperature to disease cases in the same month, without considering any previous disease or climate data. It also assumes and works only with a single region. The model is not meant to accurately capture any interesting relations - the purpose is just to show how Chap integration works in a simple setting. Note that we include `options(warn=1)` at the top in both train.r and predict.r to see warnings and catch errors when running it through Chap. This helps a lot with avoiding package depencies for more complex models.
 
 ## Running the model without Chap integration
-Before getting a new model to work as part of Chap, it can be useful to develop and debug it localy on a small dataset from file. 
+Before getting a new model to work as part of Chap, it can be useful to develop and debug it locally on a small dataset from file. 
 
 The example can be run in isolation (e.g. from the command line) using the file isolated_run.r:
 ```
 RScript isolated_run.r  
 ```
 
-This file only contains two code lines:  
-* A call to a function "train", which trains a model from an input file trainData.csv and stores the trained model in a file model.bin:
+This file imports the code from train.r and predict.r and then contains two lines of code which calls the two functions:  
+* A call to a function `train`, which trains a model from an input file trainData.csv and stores the trained model in a file model.bin:
 ```R
 train_chap("input/trainData.csv", "output/model.bin")
 ```
 
-* A call to a function "predict" uses the stored model to forecast future disease cases (to a file predictions.csv) based on input data on future climate predictions (from a file futureClimateData.csv):
+* A call to a function `predict` uses the stored model to forecast future disease cases (to a file predictions.csv) based on input data on future climate predictions (from a file futureClimateData.csv):
 ```R
 predict_chap("output/model.bin", "input/trainData.csv", "input/futureClimateData.csv", "output/predictions.csv")
 ```
@@ -93,3 +93,8 @@ After you have installed chap-core (see here for installation instructions: http
 ```
 chap evaluate --model-name /path/to/your/model/directory --dataset-name ISIMIP_dengue_harmonized --dataset-country brazil --report-filename report.pdf
 ```
+
+TO DO:
+* Fix the link for Chap installation
+* Add link for docker installation, or should even docker be used?
+* Add how to run the model from the GitHub url, not just from a local folderplacement
