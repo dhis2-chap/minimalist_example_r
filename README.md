@@ -1,6 +1,9 @@
 # Minimalist example of R model integration with Chap
 This document demonstrates a minimalist example of how to write a Chap-compatible forecasting model. The example is written in R, uses few variables without any lag and a standard machine learning model. It simply learns a linear regression from rain and temperature to disease cases in the same month, without considering any previous disease or climate data. It also assumes and works only with a single region. The model is not meant to accurately capture any interesting relations - the purpose is just to show how Chap integration works in a simple setting. Note that we include `options(warn=1)` at the top in both train.r and predict.r to see warnings and catch errors when running it through Chap. This helps a lot with avoiding package depencies for more complex models.
 
+## Prerequisites
+Have R installed and a R editor, for example RStudio.
+
 ## Running the model without Chap integration
 Before getting a new model to work as part of Chap, it can be useful to develop and debug it locally on a small dataset from file. 
 
@@ -89,12 +92,7 @@ entry_points:
 ```
 The commands then calls the Rscripts train.r and predict.r and the code under the definition of the `train` and `predict` functions ensures they are called and with the correct arguments. If these parts are missing the code will fail when run through Chap, but could still work locally through `isolated_run`.
 Chap relies on Docker to run models defined in non-python programming languages (i.e. R), you thus need Docker installed to run your model successfully through Chap. Please see the chap-core documentation for help in succeeding with this.  
-After you have installed chap-core (see here for installation instructions: https://github.com/dhis2-chap/chap-core), it should be possible to run the minimalist model through Chap as follows (remember to replace '/path/to/your/model/directory' with your local path):
+After you have installed chap-core ([installation instructions](https://dhis2-chap.github.io/chap-core/chap-cli/chap-core-cli-setup.html)), it should be possible to run the minimalist model through Chap as follows (remember to replace '/path/to/your/model/directory' with your local path):
 ```
 chap evaluate --model-name /path/to/your/model/directory --dataset-name ISIMIP_dengue_harmonized --dataset-country brazil --report-filename report.pdf
 ```
-
-TO DO:
-* Fix the link for Chap installation
-* Add link for docker installation, or should even docker be used?
-* Add how to run the model from the GitHub url, not just from a local folderplacement
