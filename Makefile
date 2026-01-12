@@ -8,20 +8,17 @@ all: help
 
 # Run the complete pipeline (train + predict)
 .PHONY: run
-run:
-	@mkdir -p output
+run: pull
 	$(DOCKER_RUN) Rscript isolated_run.r
 
 # Train the model
 .PHONY: train
 train:
-	@mkdir -p output
 	$(DOCKER_RUN) Rscript train.r input/trainData.csv output/model.bin
 
 # Make predictions (requires trained model)
 .PHONY: predict
 predict:
-	@mkdir -p output
 	$(DOCKER_RUN) Rscript predict.r output/model.bin input/trainData.csv input/futureClimateData.csv output/predictions.csv
 
 # Clean output files
