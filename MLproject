@@ -1,8 +1,8 @@
 
 name: minimalist_r
 
-docker_env:
-  image: ivargr/r_inla:latest
+renv_env: renv.lock
+
 
 entry_points:
   train:
